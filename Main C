@@ -46,7 +46,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint8_t tajmer = 0;
+uint8_t tajmer = 0; // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Timer switch (van koda da je avilable u svim funkcijama)
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -111,7 +111,7 @@ int main(void)
 
 
  	  if(null == 0){
- 		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
+ 		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ postavljanje u 0
  		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
  		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_RESET);
  		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3, GPIO_PIN_RESET);
@@ -124,7 +124,7 @@ int main(void)
  	  }
 
 
- 	  HAL_UART_Receive(&huart4, &receivedByte, 1, HAL_MAX_DELAY);
+ 	  HAL_UART_Receive(&huart4, &receivedByte, 1, HAL_MAX_DELAY);// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ pocetak postavljanja adrese
 
  	  if(receivedByte == 'E'){
  		  HAL_UART_Receive(&huart4, &receivedByte, 1, HAL_MAX_DELAY);
@@ -247,8 +247,8 @@ int main(void)
 
  		  	  mem = '9';
 
- 	  }}
- 	  }else if(receivedByte == 'D'){
+ 	  }}// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ kraj postavljanja adrese
+ 	  }else if(receivedByte == 'D'){// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ pocetak signalizacije zavrsenih narudzbi
 
  		  HAL_UART_Receive(&huart4, &receivedByte, 1, HAL_MAX_DELAY);
 
@@ -271,7 +271,7 @@ int main(void)
 
  		  		  HAL_UART_Receive(&huart4, &receivedByte, 1, 5000);
 
- 		  		  if(receivedByte == 'S'){
+ 		  		  if(receivedByte == 'S'){// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ kraj signalizacije narudzbi
 
  		  			  HAL_UART_Receive(&huart4, &receivedByte, 1, HAL_MAX_DELAY);
 
@@ -337,11 +337,11 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 
 
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)  // TIMER FUNKCIJA OVDJE
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)  // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Timer za blicanje ledica
 {
-	 if (htim->Instance == TIM6 && tajmer == 1)  // Check if TIM6 is running
+	 if (htim->Instance == TIM6 && tajmer == 1)
 	    {
-	        HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_9);  // Toggle GPIOA9
+	        HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_9);
 	    }
 }
 /* USER CODE END 4 */
